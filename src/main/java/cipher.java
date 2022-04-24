@@ -7,7 +7,7 @@ public class cipher {
             else if(shift<0){
                 shift = (shift%26)+26;
             }
-            String cipherText = "";
+            StringBuilder cipherText = new StringBuilder();
             int length =plainText.length();
             for(int i=0; i<length; i++){
                 char ch = plainText.charAt(i);
@@ -15,10 +15,10 @@ public class cipher {
                     if(Character.isLowerCase(ch)){
                         char c = (char) (ch+shift);
                         if(c>'z'){
-                            cipherText += (char)(ch -(26-shift));
+                            cipherText.append((char) (ch - (26 - shift)));
                         }
                         else{
-                            cipherText += c;
+                            cipherText.append(c);
                         }
 
 
@@ -26,25 +26,25 @@ public class cipher {
                     else if(Character. isUpperCase(ch)){
                         char c = (char) (ch+shift);
                         if(c>'Z'){
-                            cipherText +=(char) (ch -(26-shift));
+                            cipherText.append((char) (ch - (26 - shift)));
                         }
                         else{
-                            cipherText += c;
+                            cipherText.append(c);
                         }
 
 
                     }
                     else{
-                        cipherText +=ch;
+                        cipherText.append(ch);
 
                     }
                 }
             }
-            return cipherText;
+            return cipherText.toString();
         }
 
 
-    public static  String decode(String plainText, int shift){
+    private static  String decode(String plainText, int shift){
         if(shift>26){
             shift = shift%26;
         }
@@ -90,9 +90,9 @@ public class cipher {
 
         public static void main(String[] args) {
             String text ="THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG";
-            String cipher =encode(text, 5);
+            String cipher =encode(text, 6);
             System.out.println(cipher);
-            String decoded =decode(cipher,5);
+            String decoded =decode(cipher,6);
             System.out.println(decoded);
 
 
